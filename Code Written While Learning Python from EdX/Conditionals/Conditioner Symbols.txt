@@ -1,0 +1,9 @@
+#To ask question
+
+#   > greater than 
+#   >= greater than or equal to
+#   < less than 
+#   <= than than or equal to
+#   == equal to
+#   != not equal to
+#   Match

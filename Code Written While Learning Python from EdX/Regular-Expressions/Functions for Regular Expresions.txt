@@ -1,0 +1,29 @@
+re:docs.python.org/3/library/re.html:re.search
+re= Regular Expressions(
+    re.IGNORECASE - ignore case of input but uper case and lower case
+    re.MULTILINE - match different lines in a text in a paragraph
+    re.DOTALL- configure or add dot to represent any character or plus a new line
+    re.match(pattern, string, flag=0) - match from the start of the screen
+    re.fullmatch(pattern, string, flag=0) - match from the start and end of the screen
+    re.sub(pattern, repl, string, count=0, flags=0)
+    )
+. (any character except a newline)
+* (0 or more repetitions)
++ (1 or more repetitionss)
+? (0 ro 1 repetitions)
+{m} (m repetitions)
+{m,n} (m-n repetitions)
+^ (matches the start of the string)
+$ (matches the end of the string just before the newline at the end of the string)
+[] set of characters
+[^] complementing the set
+\d decimal digit
+\D nota decimal digit
+\s whitespace characters
+\S not a whitespace character
+\w word character...as well as numbers and the underscore
+\W not a word character
+A|B either A or B
+(...) a group
+(?:...) non capturing version
+:= - Walris Operator (if u want to assign something from right to left and ask a boolean question)

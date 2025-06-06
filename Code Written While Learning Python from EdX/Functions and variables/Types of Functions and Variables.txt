@@ -1,0 +1,26 @@
+Print
+Str-String
+#-Comments
+.strip()
+.title()
+input
+int-intergers
+Float
+Round
+def
+end
+sep
+list
+len-length
+dict
+__name__
+assert
+sorted: docs.python.org/3/library/functions.html#sorted: reverse=True, reverse=False, key, key=lambda
+open: docs.python.org/3/library/functions.html#open :file.write, file.close: w, a, r, with: names.append
+split
+csv:docs.pythn.org/3/library/csv.html
+PIL:pillow.readthedocs.io
+.lower()
+set()
+map
+yield

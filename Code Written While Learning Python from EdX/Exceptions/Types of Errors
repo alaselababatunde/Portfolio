@@ -1,0 +1,15 @@
+ValueError
+NameError
+SyntaxError
+Indentation Error
+Index Error
+Assertion Error
+BaseException
+Keyboardinterrupt
+ArithmeticError
+AttribiteError
+EOFError
+LookupError
+ImportError
+ModuleError
+KeyError

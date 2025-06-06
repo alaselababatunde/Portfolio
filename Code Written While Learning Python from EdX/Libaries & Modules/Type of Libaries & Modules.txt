@@ -1,0 +1,10 @@
+Random
+docs.python.org/3/library/random.html
+Statistics
+docs.python.org/3/library/statistics.html
+SYS
+docs.python.org/3/library/sys.html
+Requests
+pypi.org/project/requests
+JSON
+docs.python.org/3/library/json.html
