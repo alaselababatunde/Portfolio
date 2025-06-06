@@ -1,0 +1,176 @@
+Question:
+How to make my AI search for things on the web without opening a new tab?
+
+Answer:
+
+To make your AI search for information on the web without opening a new tab, you can use APIs provided by various search engines or web scraping techniques. Here's a simple approach using Python with the `requests` library to fetch search results:
+
+### Using the Google Custom Search API
+
+1. **Set up Google Custom Search API**:
+   - Create a custom search engine on [Google Custom Search](https://cse.google.com/cse/).
+   - Get the API key from the [Google Cloud Console](https://console.developers.google.com/).
+
+2. **Python Code**:
+
+```python
+import requests
+
+def search_google(query, api_key, cse_id):
+    url = "https://www.googleapis.com/customsearch/v1"
+    params = {
+        'q': query,
+        'key': api_key,
+        'cx': cse_id
+    }
+    response = requests.get(url, params=params)
+    return response.json()
+
+# Example usage
+api_key = 'YOUR_GOOGLE_API_KEY'
+cse_id = 'YOUR_CUSTOM_SEARCH_ENGINE_ID'
+query = 'Python programming'
+results = search_google(query, api_key, cse_id)
+
+for item in results.get('items', []):
+    print(item['title'], item['link'])
+```
+
+### Using BeautifulSoup for Web Scraping
+
+For websites that do not have an API, you can use `BeautifulSoup` and `requests` to scrape data:
+
+1. **Install Required Libraries**:
+
+```sh
+pip install requests beautifulsoup4
+```
+
+2. **Python Code**:
+
+```python
+import requests
+from bs4 import BeautifulSoup
+
+def search_web(query):
+    search_url = f"https://www.google.com/search?q={query.replace(' ', '+')}"
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+    response = requests.get(search_url, headers=headers)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    results = []
+    for g in soup.find_all('div', class_='g'):
+        title = g.find('h3').text
+        link = g.find('a')['href']
+        results.append({'title': title, 'link': link})
+    
+    return results
+
+# Example usage
+query = 'Python programming'
+results = search_web(query)
+
+for result in results:
+    print(result['title'], result['link'])
+```
+
+### Note
+
+- Using web scraping might violate the terms of service of some websites.
+- APIs are the preferred and legal way to fetch data from websites that provide them.
+
+Make sure to handle exceptions and errors in your code to make it robust.
+
+---
+
+How to make my AI say what it has searched?
+
+To make your AI announce what it has searched for, you can use a text-to-speech library like `pyttsx3` in Python. Here’s how you can integrate text-to-speech with the previous search functions:
+
+### Setup
+
+First, install the `pyttsx3` library if you don't have it:
+
+```sh
+pip install pyttsx3
+```
+
+### Using Google Custom Search API with Text-to-Speech
+
+```python
+import requests
+import pyttsx3
+
+def search_google(query, api_key, cse_id):
+    url = "https://www.googleapis.com/customsearch/v1"
+    params = {
+        'q': query,
+        'key': api_key,
+        'cx': cse_id
+    }
+    response = requests.get(url, params=params)
+    return response.json()
+
+def speak(text):
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
+
+# Example usage
+api_key = 'YOUR_GOOGLE_API_KEY'
+cse_id = 'YOUR_CUSTOM_SEARCH_ENGINE_ID'
+query = 'Python programming'
+results = search_google(query, api_key, cse_id)
+
+for item in results.get('items', []):
+    title = item['title']
+    link = item['link']
+    print(title, link)
+    speak(f"I found {title}. You can check it at {link}.")
+```
+
+### Using BeautifulSoup for Web Scraping with Text-to-Speech
+
+```python
+import requests
+from bs4 import BeautifulSoup
+import pyttsx3
+
+def search_web(query):
+    search_url = f"https://www.google.com/search?q={query.replace(' ', '+')}"
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'}
+    response = requests.get(search_url, headers=headers)
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    results = []
+    for g in soup.find_all('div', class_='g'):
+        title = g.find('h3').text
+        link = g.find('a')['href']
+        results.append({'title': title, 'link': link})
+    
+    return results
+
+def speak(text):
+    engine = pyttsx3.init()
+    engine.say(text)
+    engine.runAndWait()
+
+# Example usage
+query = 'Python programming'
+results = search_web(query)
+
+for result in results:
+    title = result['title']
+    link = result['link']
+    print(title, link)
+    speak(f"I found {title}. You can check it at {link}.")
+```
+
+### Explanation
+
+1. **`search_google` Function**: This function fetches search results using the Google Custom Search API.
+2. **`search_web` Function**: This function scrapes search results from Google.
+3. **`speak` Function**: This function uses the `pyttsx3` library to convert text to speech.
+4. **Integration**: After fetching the search results, the program prints the results and then calls the `speak` function to announce them.
+
+This code will fetch search results and then use text-to-speech to announce each result.
