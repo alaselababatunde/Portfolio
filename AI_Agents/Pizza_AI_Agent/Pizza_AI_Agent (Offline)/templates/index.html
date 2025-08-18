@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pizza AI Agent</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <h2>🍕 Pizza AI Agent</h2>
+    </div>
+
+    <div class="chat-box" id="chat-box">
+      {% for message in chat_history %}
+        <div class="message user">{{ message.user }}</div>
+        <div class="message bot">{{ message.bot|safe }}</div>
+      {% endfor %}
+    </div>
+
+    <form method="POST" class="chat-input" autocomplete="off">
+      <input type="text" name="question" id="input" placeholder="Ask me anything about Pizza..." required />
+      <button type="submit">Send</button>
+    </form>
+
+    <form method="POST" action="{{ url_for('clear_chat') }}">
+      <button class="clear-btn" type="submit">🗑 Clear Chat</button>
+    </form>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById('chat-box');
+    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to latest
+  </script>
+</body>
+</html>
