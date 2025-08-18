@@ -1,6 +1,6 @@
 # 🤖 AI Agents by Alasela Babatunde
 
-This folder contains all AI agents developed by **Alasela Babatunde**, a young aspiring AI Engineer and founder of **Alash Studios**. These agents range from basic prototypes to advanced, emotionally intelligent systems aimed at practical, real-world use cases.
+This folder contains all AI agents developed by **Alasela Babatunde**, a young **AI Engineer** and founder of **Alash Studios**. These agents range from basic prototypes to advanced, emotionally intelligent systems aimed at practical, real-world use cases.
 
 ---
 
