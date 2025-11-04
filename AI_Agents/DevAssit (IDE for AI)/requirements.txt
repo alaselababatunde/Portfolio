@@ -1,0 +1,19 @@
+fastapi
+uvicorn
+spitch          # for speech-to-text
+transformers
+torch
+accelerate
+sentencepiece
+langchain
+langchain-huggingface
+langchain-community
+faiss-cpu       # vector store
+sentence-transformers
+pandas
+datasets
+huggingface-hub
+langdetect
+chromadb
+python-multipart
+langchain_chroma
