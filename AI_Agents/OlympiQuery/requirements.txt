@@ -1,0 +1,7 @@
+gradio
+python-dotenv
+requests
+sentence-transformers
+faiss-cpu
+numpy
+pandas
