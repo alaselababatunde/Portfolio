@@ -1,0 +1,16 @@
+flask
+requests
+markdown
+gunicorn
+huggingface_hub
+langchain
+langchain-core
+langchain-huggingface
+langchain-chroma
+pandas
+sentence-transformers
+chromadb
+langchain-community
+python-dotenv
+langchain-openai
+ddgs

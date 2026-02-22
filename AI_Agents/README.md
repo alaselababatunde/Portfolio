@@ -13,6 +13,5 @@ This folder serves as a unified workspace for experimenting with, building, and 
 - Conversational agents
 - NLP pipelines and utilities
 
-> **Note**: Some projects here are experimental, under development, or in early prototype stages.
 
 ---

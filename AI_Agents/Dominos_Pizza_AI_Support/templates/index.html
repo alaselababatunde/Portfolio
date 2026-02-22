@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Domino's Pizza AI Support</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+  <link rel="icon" href="{{ url_for('static', filename='assests/logo.png') }}" type="image/png">
+</head>
+
+<body>
+  <div class="chat-container">
+    <div class="chat-header">
+      <h2><img src="/static/assests/logo.png" alt="Domino's Logo"> Domino's AI Support</h2>
+      <button onclick="clearChat()"
+        style="background: transparent; border: none; color: var(--dominos-red); cursor: pointer; font-weight: bold;">Clear
+        Chat</button>
+    </div>
+
+    <div class="chat-box" id="chat-box">
+      {% for message in chat_history %}
+      <div class="message user slide-in-bottom">{{ message.user }}</div>
+      <div class="message bot slide-in-bottom">
+        <img src="/static/assests/logo.png" class="bot-logo" alt="Domino's">
+        {{ message.bot|safe }}
+      </div>
+      {% endfor %}
+    </div>
+
+    <form id="chat-form" class="chat-input" autocomplete="off">
+      <textarea name="question" id="input" placeholder="How can Domino's help you today?" required></textarea>
+      <button type="submit" id="send-btn" aria-label="Send">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="3" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg>
+      </button>
+    </form>
+  </div>
+
+  <script>
+    const chatForm = document.getElementById('chat-form');
+    const chatBox = document.getElementById('chat-box');
+    const input = document.getElementById('input');
+    const sendBtn = document.getElementById('send-btn');
+
+    // Auto-expand textarea
+    input.addEventListener('input', () => {
+      input.style.height = 'auto';
+      input.style.height = input.scrollHeight + 'px';
+    });
+
+    async function clearChat() {
+      if (confirm('Are you sure you want to clear the pizza party? (Chat history)')) {
+        await fetch('/clear', { method: 'POST' });
+        window.location.reload();
+      }
+    }
+
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const question = input.value.trim();
+      if (!question) return;
+
+      // Add user message
+      const userMessage = document.createElement('div');
+      userMessage.classList.add('message', 'user', 'slide-in-bottom');
+      userMessage.textContent = question;
+      chatBox.appendChild(userMessage);
+      userMessage.scrollIntoView({ block: "end", behavior: "smooth" });
+
+      // Clear input immediately
+      input.value = '';
+      input.style.height = 'auto';
+      input.disabled = true;
+      sendBtn.disabled = true;
+
+      // Add bot message with thinking animation
+      const botMessage = document.createElement('div');
+      botMessage.classList.add('message', 'bot', 'slide-in-bottom');
+      botMessage.innerHTML = `
+        <img src="/static/assests/logo.png" class="bot-logo" alt="Domino's">
+        <div class="thinking-container">
+            <div class="thinking-dot"></div>
+            <div class="thinking-dot"></div>
+            <div class="thinking-dot"></div>
+        </div>
+      `;
+      chatBox.appendChild(botMessage);
+      botMessage.scrollIntoView({ block: "start", behavior: "smooth" });
+
+      // Send POST request
+      try {
+        const res = await fetch('/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question })
+        });
+        const data = await res.json();
+
+        // Replace thinking animation with bot response
+        botMessage.innerHTML = `<img src="/static/assests/logo.png" class="bot-logo" alt="Domino's"> ${data.response || data.error}`;
+        botMessage.scrollIntoView({ block: "start", behavior: "smooth" });
+      } catch (err) {
+        botMessage.innerHTML = `<img src="/static/assests/logo.png" class="bot-logo" alt="Domino's"> Sorry, something went wrong in the kitchen.`;
+      } finally {
+        input.disabled = false;
+        sendBtn.disabled = false;
+        input.focus();
+      }
+    });
+  </script>
+</body>
+
+</html>

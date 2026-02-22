@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Theo AI | Biblical Guidance</title>
+    <link rel="stylesheet" href="/static/main.css" />
+    <link rel="icon" href="/static/assets/logo.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="header-info">
+                <img src="/static/assets/logo.png" alt="CLCC Logo">
+                <div class="header-text">
+                    <h2>Theo AI</h2>
+                    <p class="header-subtitle">CLCC - TECHDISCIPLES</p>
+                </div>
+            </div>
+            <button onclick="clearChat()"
+                style="background: transparent; border: none; color: var(--theo-cream); cursor: pointer; font-weight: bold; opacity: 0.6;">Clear
+                Chat</button>
+        </div>
+
+        <div class="chat-box" id="chat-box">
+            {% for message in chat_history %}
+            <div class="message user slide-in-bottom">{{ message.user }}</div>
+            <div class="message bot slide-in-bottom">
+                <img src="/static/assets/logo.png" class="bot-logo" alt="Theo">
+                {{ message.bot|safe }}
+            </div>
+            {% endfor %}
+
+            {% if not chat_history %}
+            <div class="welcome-container slide-in-bottom">
+                <div class="welcome-icon">🕊️</div>
+                <h1>Shalom, Beloved</h1>
+                <p>I am Theo, your personal Christian companion. How may the Lord's wisdom guide you today?</p>
+            </div>
+            {% endif %}
+        </div>
+
+        <form id="chat-form" class="chat-input" autocomplete="off">
+            <textarea name="question" id="input" placeholder="How can Theo help you today?" required></textarea>
+            <button type="submit" id="send-btn" aria-label="Send">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="white" stroke-width="3" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                </svg>
+            </button>
+        </form>
+
+    </div>
+
+    <script>
+        const chatForm = document.getElementById('chat-form');
+        const chatBox = document.getElementById('chat-box');
+        const input = document.getElementById('input');
+        const sendBtn = document.getElementById('send-btn');
+
+        // Auto-expand textarea
+        input.addEventListener('input', () => {
+            input.style.height = 'auto';
+            input.style.height = input.scrollHeight + 'px';
+        });
+
+        async function clearChat() {
+            if (confirm('Are you sure you want to clear our spiritual journey? (Chat history)')) {
+                await fetch('/clear', { method: 'POST' });
+                window.location.reload();
+            }
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const question = input.value.trim();
+            if (!question) return;
+
+            // Remove welcome message if exists
+            const welcome = document.querySelector('.welcome-container');
+            if (welcome) welcome.remove();
+
+            // Add user message
+            const userMessage = document.createElement('div');
+            userMessage.classList.add('message', 'user', 'slide-in-bottom');
+            userMessage.textContent = question;
+            chatBox.appendChild(userMessage);
+            userMessage.scrollIntoView({ block: "end", behavior: "smooth" });
+
+            // Clear input immediately
+            input.value = '';
+            input.style.height = 'auto';
+            input.disabled = true;
+            sendBtn.disabled = true;
+
+            // Add bot message with thinking animation
+            const botMessage = document.createElement('div');
+            botMessage.classList.add('message', 'bot', 'slide-in-bottom');
+            botMessage.innerHTML = `
+        <img src="/static/assets/logo.png" class="bot-logo" alt="Theo">
+        <div class="thinking-container">
+            <div class="thinking-dot"></div>
+            <div class="thinking-dot"></div>
+            <div class="thinking-dot"></div>
+        </div>
+      `;
+            chatBox.appendChild(botMessage);
+            botMessage.scrollIntoView({ block: "start", behavior: "smooth" });
+
+            // Send POST request
+            try {
+                const res = await fetch('/ask', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ question })
+                });
+                const data = await res.json();
+
+                // Replace thinking animation with bot response
+                botMessage.innerHTML = `<img src="/static/assets/logo.png" class="bot-logo" alt="Theo"> ${data.response || data.error}`;
+                botMessage.scrollIntoView({ block: "start", behavior: "smooth" });
+            } catch (err) {
+                botMessage.innerHTML = `<img src="/static/assets/logo.png" class="bot-logo" alt="Theo"> I apologize, beloved, but I encountered a connection issue. Please try again.`;
+            } finally {
+                input.disabled = false;
+                sendBtn.disabled = false;
+                input.focus();
+            }
+        });
+    </script>
+</body>
+
+</html>

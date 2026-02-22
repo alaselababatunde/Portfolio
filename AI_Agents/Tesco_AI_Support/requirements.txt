@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+chromadb
+sentence-transformers
+python-multipart
+requests
+redis
+python-dotenv
+pandas
+openai
+duckduckgo_search

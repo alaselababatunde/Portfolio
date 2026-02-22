@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  dstv-ai-support:
+    build: .
+    ports:
+      - "7860:7860"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+      - ./chroma_db:/app/chroma_db
+      - ./memory.db:/app/memory.db
+    restart: always
