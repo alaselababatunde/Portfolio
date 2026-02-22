@@ -6,8 +6,8 @@
 
 ### AI Engineer | Hackathon Winner | Building the Future of AI at 15
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/alasela-babatunde-769524333?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app)
-[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-green?style=flat&logo=google-chrome)](https://bit.ly/alaselababatunde)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](www.linkedin.com/in/alasela-babatunde-769524333)
+[![Portfolio](https://img.shields.io/badge/Portfolio-Visit-green?style=flat&logo=google-chrome)](https://alasela-babatunde.vercel.app/)
 [![Email](https://img.shields.io/badge/Email-Contact-red?style=flat&logo=gmail)](mailto:alaselababatunde10@gmail.com)
 
 ---
@@ -44,38 +44,6 @@ API Integration & Documentation | Model Deployment
 Speech Recognition & TTS | Virtual Assistants
 Code Debugging AI | Auto-Documentation Systems
 ```
-
----
-
-## 🏆 Featured Projects
-
-### 🤖 **DevAssist IDE** *(Hackathon Winner - Remostart 2025)*
-AI-powered programming IDE with integrated chat interface for intelligent code debugging and automatic documentation generation. Also includes an SME website builder with AI integration.
-- **Role:** AI Engineer
-- **Tech:** Python, AI Agents, Code Analysis, Documentation AI
-- **Achievement:** Won Remostart Hackathon
-
-### 🌾 **AgriTech AI** *(Team Astra - FutureStack GenAI Hackathon)*
-AI solution designed to optimize agricultural processes and improve farmer productivity through intelligent recommendations and data analysis.
-- **Role:** AI Engineer
-- **Tech:** Python, Langchain, Agricultural Data Analysis
-- **Achievement:** Certificate of Participation
-
-### 🧠 **Cura AI**
-Mental health-focused AI platform building emotionally intelligent virtual companions for therapeutic support and wellness.
-- **Role:** AI Engineer & Co-Founder
-- **Tech:** Xai API, Flask, Emotional Intelligence Model
-- **Status:** In Development
-
-### 🙏 **Tech Disciples AI**
-Custom AI assistant built for church community engagement, information access, and support.
-- **Role:** AI Developer
-- **Tech:** Python, Virtual Assistant Architecture
-
-### 🤖 **A.S.I.A** *(Virtual Assistant)*
-Fully functional AI assistant featuring speech recognition, text-to-speech synthesis, and real-time animations.
-- **Tech:** Python, Speech Recognition, TTS, PyGame
-- **Features:** Voice commands, visual feedback, task automation
 
 ---
 
@@ -154,12 +122,12 @@ Age is just a number. What matters is dedication, knowledge, and the courage to 
 
 - 📧 **Email:** alaselababatunde10@gmail.com
 - 📱 **WhatsApp:** 09154357208
-- 💼 **LinkedIn:** [Alasela Babatunde](https://www.linkedin.com/in/alasela-babatunde)
+- 💼 **LinkedIn:** [Alasela Babatunde](www.linkedin.com/in/alasela-babatunde-769524333)
 - 🐦 **X (Twitter):** [@alasela_babs](https://twitter.com/alasela_babs)
 - 💬 **Discord:** @alasela_babatunde
 - 📲 **Telegram:** @alasela_babatunde
 - 🎥 **TikTok:** @alasela_babatunde
-- 🌐 **Website:** [bit.ly/alaselababatunde](https://bit.ly/alaselababatunde)
+- 🌐 **Website:** [bit.ly/alaselababatunde](https://alasela-babatunde.vercel.app/)
 
 ---
 
